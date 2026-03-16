@@ -26,7 +26,7 @@ export default function Services() {
   return (
     <section id="services" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="heading text-xs tracking-[0.3em] text-[#F5F5F0]/40 mb-16 text-center">
+        <h2 className="heading text-xs tracking-[0.3em] text-[#F5F5F0]/60 mb-16 text-center">
           Services & Pricing
         </h2>
 

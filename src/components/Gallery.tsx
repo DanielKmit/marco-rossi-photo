@@ -68,15 +68,20 @@ const photos = [
 
 export default function Gallery() {
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [tappedIndex, setTappedIndex] = useState<number | null>(null);
 
   const handleImageLoad = (index: number) => {
     setLoadedImages((prev) => new Set(prev).add(index));
   };
 
+  const handleTap = (index: number) => {
+    setTappedIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <section id="work" className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
-        <h2 className="heading text-xs tracking-[0.3em] text-[#F5F5F0]/40 mb-16 text-center">
+        <h2 className="heading text-xs tracking-[0.3em] text-[#F5F5F0]/60 mb-16 text-center">
           Selected Work
         </h2>
 
@@ -85,7 +90,8 @@ export default function Gallery() {
           {photos.map((photo, index) => (
             <div
               key={index}
-              className="relative group break-inside-avoid overflow-hidden bg-[#1A1A1A]"
+              className="relative group break-inside-avoid overflow-hidden bg-[#1A1A1A] cursor-pointer"
+              onClick={() => handleTap(index)}
             >
               <div className={`relative ${photo.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
                 <Image
@@ -102,9 +108,21 @@ export default function Gallery() {
                 />
               </div>
 
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-[#0A0A0A]/0 group-hover:bg-[#0A0A0A]/60 transition-all duration-500 flex items-end">
-                <div className="p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+              {/* Hover/tap overlay */}
+              <div
+                className={`absolute inset-0 transition-all duration-500 flex items-end ${
+                  tappedIndex === index
+                    ? "bg-[#0A0A0A]/60"
+                    : "bg-[#0A0A0A]/0 group-hover:bg-[#0A0A0A]/60"
+                }`}
+              >
+                <div
+                  className={`p-6 transition-transform duration-500 ${
+                    tappedIndex === index
+                      ? "translate-y-0"
+                      : "translate-y-full group-hover:translate-y-0"
+                  }`}
+                >
                   <p className="heading text-xs tracking-[0.2em] text-[#C8A96E] mb-1">
                     {photo.category}
                   </p>

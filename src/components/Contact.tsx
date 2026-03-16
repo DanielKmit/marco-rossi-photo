@@ -33,6 +33,11 @@ export default function Contact() {
         <p className="text-xs text-[#F5F5F0]/20 heading tracking-[0.2em]">
           © 2026 Marco Rossi Photography
         </p>
+        <div className="flex gap-6 text-xs text-[#F5F5F0]/20 heading tracking-[0.2em]">
+          {/* Placeholder legal links */}
+          <a href="#privacy" className="hover:text-[#F5F5F0]/40 transition-colors">Privacy Policy</a>
+          <a href="#terms" className="hover:text-[#F5F5F0]/40 transition-colors">Terms of Service</a>
+        </div>
         <p className="text-xs text-[#F5F5F0]/20 heading tracking-[0.2em]">
           Milan, Italy
         </p>
